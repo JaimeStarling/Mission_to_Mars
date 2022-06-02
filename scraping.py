@@ -1,6 +1,7 @@
 # Import Splinter, BeautifulSoup, and Pandas
 from splinter import Browser
-from bs4 import BeautifulSoup as soup
+from bs4 import BeautifulSoup as bs
+#changed from soup to bs for ease with assignment
 import pandas as pd
 import datetime as dt
 from webdriver_manager.chrome import ChromeDriverManager
@@ -19,7 +20,7 @@ browser.is_element_present_by_css('div.list_text', wait_time=1)
 
 # Convert the browser html to a soup object and then quit the browser
 html = browser.html
-news_soup = soup(html, 'html.parser')
+news_soup = bs(html, 'html.parser')
 
 slide_elem = news_soup.select_one('div.list_text')
 slide_elem.find('div', class_='content_title')
@@ -46,7 +47,7 @@ full_image_elem.click()
 
 # Parse the resulting html with soup
 html = browser.html
-img_soup = soup(html, 'html.parser')
+img_soup = bs(html, 'html.parser')
 
  # Find the relative image url
 img_url_rel = img_soup.find('img', class_='fancybox-image').get('src')
